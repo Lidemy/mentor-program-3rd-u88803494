@@ -1,5 +1,3 @@
-
-
 function zeroPadding(arr, n) {
   for (let i = 1; i <= n; i += 1) {
     arr.push('0');
@@ -50,5 +48,5 @@ function add(a, b) {
   }
   return result;
 }
-console.log(add('12312383813881381381', '129018313819319831'));
+
 module.exports = add;
