@@ -1,0 +1,44 @@
+body {
+    position: relative;
+    font-size:20px;
+    font-family:"微軟正黑體","sans-serif";
+}
+.medium__clap {
+    height:70px;
+    width:70px;
+    position: fixed;
+    border-radius: 50%;
+    box-sizing: border-box;
+    text-align: center;
+    top:200px;
+    font-size:15px;
+}
+
+.medium__clap:hover {
+    border: 1px solid black;
+}
+
+.medium__clap-times {
+    font-weight: bolder;
+    margin:10px 0px 5px ;
+}
+
+.medium__clap-clap {
+    margin:5px ;
+}
+
+.medium__post {
+    max-width:1000px;
+    margin: 0px auto;
+}
+
+.medium_post-title {
+    font-size: 41px;
+    font-weight: bolder;
+}
+
+@media screen and (max-width: 1190px){ /* 尺寸到達一定範圍內實現 */
+    .medium__clap {
+        display: none;
+    }
+}
