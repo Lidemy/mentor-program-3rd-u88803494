@@ -1,0 +1,119 @@
+body {
+    margin:0px;
+    font-family: sans-serif;
+}
+
+.homePage__navigation {
+    background:#023175;
+    height: auto;
+    line-height: 50px; /*設置高度就可以置中*/
+    width:100%;
+}
+.homePage__navigation-title {
+    color: white;
+    font-size: 25px;
+    font-weight: bolder;
+    margin: 0px 10px;
+    display:inline-block;
+}
+
+.homePage__navigation-item {
+    color: #ffa100;
+    font-size: 20px;
+    margin: 0px 10px;
+    display:inline-block;
+}
+
+.homePage__navigation-item:hover {
+    color:white;
+    cursor: pointer;/*滑鼠變換*/
+}
+
+.homePage__Introduction {
+    background: #dae3ff;
+    height: auto;
+    padding: 10px;
+    width:100%;    
+}
+
+.homePage__Introduction-board {
+    max-width: 1000px;
+    margin: 0px auto;
+}
+
+.homePage__Introduction-title {
+    font-size: 91px;
+    font-weight: bolder;
+    margin: 20px;
+    margin-top:40px;
+}
+
+.homePage__Introduction-content {
+    font-size: 17px;
+    margin: 20px;
+    max-width: 1000px;
+}
+
+.homePage__Introduction-more {
+    margin: 20px;
+    padding:15px;
+    border-radius: 10px;
+    background: #348fff;
+    max-width:178px;
+    text-align: center;
+    color: white;
+    font-size: 25px;
+    margin-bottom: 40px;
+}
+
+.homePage__Introduction-more:hover {
+    background: #0072ff;
+    cursor: pointer;/*滑鼠變換*/
+}
+
+.homePage__content {
+    height: auto;
+    max-width:1000px;
+    margin: 0px auto;
+}
+
+.homePage__content-box {
+    height: auto;
+    max-width:32%;
+    min-width: 200px;
+    display:inline-block;
+}
+
+.homePage__content-box-title {
+    font-size: 39px;
+    font-weight: blder;
+    margin: 20px;
+    margin-top:30px;
+}
+
+.homePage__content-box-content {
+    font-size: 15px;
+    margin: 20px;
+}
+
+.homePage__content-box-more {
+    margin:20px;
+    padding:15px;
+    border-radius: 10px;
+    background: #838c8a;
+    max-width:178px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+}
+
+.homePage__content-footer {
+    height: 60px;
+    max-width: 1000px;
+    border-top: 1px solid black; /*待刪*/
+    box-sizing: border-box;
+    padding:20px;
+    font-size: 13px;
+}
