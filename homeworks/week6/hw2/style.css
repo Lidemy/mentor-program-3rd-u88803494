@@ -16,6 +16,7 @@ body {
 
 .medium__clap:hover {
     border: 1px solid black;
+    cursor: pointer;
 }
 
 .medium__clap-times {
