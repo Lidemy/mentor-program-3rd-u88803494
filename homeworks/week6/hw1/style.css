@@ -8,7 +8,9 @@ body {
     height: auto;
     line-height: 50px; /*設置高度就可以置中*/
     width:100%;
+    position: fixed;
 }
+
 .homePage__navigation-title {
     color: white;
     font-size: 25px;
@@ -29,32 +31,32 @@ body {
     cursor: pointer;/*滑鼠變換*/
 }
 
-.homePage__Introduction {
+.homePage__introduction {
     background: #dae3ff;
-    height: auto;
     padding: 10px;
     width:100%;    
 }
 
-.homePage__Introduction-board {
+.homePage__introduction-board {
+    padding-top: 50px;
     max-width: 1000px;
     margin: 0px auto;
 }
 
-.homePage__Introduction-title {
+.homePage__introduction-title {
     font-size: 91px;
     font-weight: bolder;
     margin: 20px;
     margin-top:40px;
 }
 
-.homePage__Introduction-content {
+.homePage__introduction-content {
     font-size: 17px;
     margin: 20px;
     max-width: 1000px;
 }
 
-.homePage__Introduction-more {
+.homePage__introduction-more {
     margin: 20px;
     padding:15px;
     border-radius: 10px;
@@ -66,7 +68,7 @@ body {
     margin-bottom: 40px;
 }
 
-.homePage__Introduction-more:hover {
+.homePage__introduction-more:hover {
     background: #0072ff;
     cursor: pointer;/*滑鼠變換*/
 }
@@ -80,7 +82,6 @@ body {
 .homePage__content-box {
     height: auto;
     max-width:32%;
-    min-width: 200px;
     display:inline-block;
 }
 
@@ -112,8 +113,18 @@ body {
 .homePage__content-footer {
     height: 60px;
     max-width: 1000px;
-    border-top: 1px solid black; /*待刪*/
+    border-top: 1px solid black;
     box-sizing: border-box;
     padding:20px;
     font-size: 13px;
+}
+
+@media screen and (max-width: 1000px){ /* 尺寸到達一定範圍內實現 */
+    .homePage__content {
+        flex-wrap: wrap;
+    }  
+    
+    .homePage__content-box {
+        max-width:100%;
+    }
 }
