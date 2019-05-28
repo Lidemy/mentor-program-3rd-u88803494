@@ -29,6 +29,7 @@ body {
 }
 
 .medium__post {
+    margin:50px;
     max-width:1000px;
     margin: 0px auto;
 }
@@ -38,8 +39,23 @@ body {
     font-weight: bolder;
 }
 
+.medium__post-content {
+    margin:50px;
+}
+
 @media screen and (max-width: 1190px){ /* 尺寸到達一定範圍內實現 */
     .medium__clap {
         display: none;
     }
 }
+
+@media screen and (max-width: 900px){ /* 尺寸到達一定範圍內實現 */
+    .medium_post-title {
+        font-size: 31px;
+    }
+
+    .medium__post-content-article {
+        font-size: 15px;
+    }
+}
+
