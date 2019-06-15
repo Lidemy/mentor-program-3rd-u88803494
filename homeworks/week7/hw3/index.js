@@ -6,7 +6,7 @@ function screenNumber(num) { // 在螢幕印出傳入值
   document.querySelector('.calculator__screen--output').innerText = num;
 }
 
-function changeToNumber(stringNumber) { // 要變更名字，想清楚用途
+function changeToNumber(stringNumber) {
   let innerNumberOperation = numberOperation; // 要分開寫，免得汙染螢幕的數字
   innerNumberOperation += stringNumber;
   numberOperation = parseInt(innerNumberOperation, 10); // 轉換成數字
@@ -14,8 +14,8 @@ function changeToNumber(stringNumber) { // 要變更名字，想清楚用途
 } /* 這邊先把內部的數字跟外部的分開寫，理由是怕污染到螢幕的數字，但有可能不需要分開，
      之後再來評估看看。另外有個問題是，案太多下之後會突破螢幕寬度，這就留待以後再來處理 */
 
-function equalUnit(num1, Arithmetic, num2) {
-  switch (Arithmetic) {
+function equalUnit(num1, arithmetic, num2) {
+  switch (arithmetic) {
     case '+':
       return num1 + num2;
     case '-':
