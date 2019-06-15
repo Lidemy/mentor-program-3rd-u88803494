@@ -38,7 +38,7 @@ function allClearUnut() { // AC 的單位，用全名來命名
 
 function inputClick(e) {
   if (e.target.classList.contains('calculator__input--nums')) {
-    const stringNumber = e.target.innerText; // 抓取到是那個數字，不能在這邊轉成數字型態
+    const stringNumber = e.target.innerText; // 抓取到的數字，不能在這邊轉成數字型態
     changeToNumber(stringNumber);
     /* 發現點號按鍵會有 bug，但是因為題目的要求沒有用到點號，所以就先不處理 */
   } else if (e.target.classList.contains('calculator__input--operator')) {
