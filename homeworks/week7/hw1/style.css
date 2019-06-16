@@ -1,0 +1,33 @@
+body {
+    margin:0px;
+}
+
+.body__change {
+    background: orange;
+}
+
+.board {
+    
+}
+
+.information {
+    height:100px;
+    width: 300px;
+    position: absolute; /* 置中 */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    text-align:center;
+}
+
+.notice {
+    font-family: '微軟正黑體';
+    font-size: 30px;
+    font-weight: bold; 
+}
+
+.btn {
+    display:none;
+}

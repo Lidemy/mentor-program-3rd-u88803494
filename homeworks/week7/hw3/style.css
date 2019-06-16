@@ -1,0 +1,61 @@
+body {
+    font-family: sans-serif;
+}
+
+.board {
+    max-width:430px;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+  
+.calculator {
+    border: 1px solid #DDDDDD;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.calculator__screen--board {
+    border: 1px solid #CCCCCC;
+    height: 65px;
+    margin: 5px;
+}
+
+.calculator__screen--output {
+    padding: 10px 3px 0px;
+    text-align: right;
+    font-size:50px;
+    letter-spacing: 1px;
+}
+
+.calculator__input {
+    padding: 10px 5px 5px;
+}
+
+.calculator__input--row {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+
+button { /* 先下大致需要的 style，剩下在細細調整 */
+    height:40px;
+    width: 95px;
+    border: 1px solid #CCCCCC;
+}
+
+button:hover {
+    border: 1px solid #3F3F3F8C;
+}
+
+.calculator__input--nums {
+  background: white;
+}
+
+.calculator__input--equal {
+    background: orange;
+    width: 200px;
+}

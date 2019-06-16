@@ -1,0 +1,106 @@
+body {
+  margin:0px;
+  font-family: "微軟正黑體";
+  background: #FFCCCC68;
+}
+
+
+.background__picture {
+  background:url("./pic.png") no-repeat top center;
+  background-size: cover; 
+  height:260px; 
+}
+
+.form {
+  border-width: 8px 0 0;
+  border-style: solid;
+  border-color: rgb(255, 137, 75); 
+  max-width:640px;
+  background: white;
+  position: absolute;
+  top: 180px;
+  left: 0;
+  right: 0;
+  margin: auto auto 139px auto ;
+}
+
+.form__board {
+  padding: 19px;
+
+}
+
+.form__title {
+  padding: 20px 15px;
+  font-size:13px;
+  line-height: 200%;
+}
+
+.form__title--title {
+  font-size:34px;
+  font-weight:550;
+  line-height:120%;
+  margin:0 0 10px 0;
+}
+
+.form__title--description {
+  margin:10px 0;
+
+}
+
+.form__title--notice {
+  color:red;
+}
+
+
+.form__content {
+  padding: 25px 15px;
+  margin: 2px 0;
+}
+
+.form__content--background { /* 背景變色 */
+  background: pink;
+}
+
+
+.form__content--title {
+  font-size:20px;
+}
+
+.form__content--title::after { 
+  content: attr(data-symbol);
+  color: red;
+}
+
+.form__content--description {
+  font-size:13px;
+}
+
+
+.form__content--required {
+  color:red;
+  margin:10px 0;
+}
+
+.form__content--none { /* 沒填寫就消除  */
+  display: none;
+}
+
+
+.form__content--option {
+  padding: 15px 0;
+}
+
+.form__content--btn {
+  margin: 10px 0;
+}
+
+.form__content--submit {
+  color:white;
+  font-size: 14px;
+  font-family: "微軟正黑體";
+  padding: 10px 30px;
+  border:0px;
+  margin:8px 0;
+  border-radius: 5px;
+  background: #216af3;
+}

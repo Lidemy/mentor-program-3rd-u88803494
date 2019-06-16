@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title> [Week7]hw2_仿 Google 表單_hugh </title>
+</head>
+
+<body>
+    <div class="background">
+        <div class="background__picture">
+        </div>
+    </div>
+    <form class="form">
+        <div class="form__board">
+            <div class="form__title">
+                <div class="form__title--title">程式導師實驗計畫第三期報名表單</div>
+                <div class="form__title--description">詳情請參考： <a
+                        href="https://medium.com/@hulitw/mentor-program-b5f96ae1eed1"
+                        target="_blank">https://medium.com/hulis-blog/mentor-program-3rd-47a2e85e33b3</a><br />
+                    填完之後請務必按照文章內的說明再寄信給我，才算報名成功喔</div>
+                <div class="form__title--notice">*必填</div>
+            </div>
+            <div class="form__content">
+                <div class="form__content--title" data-symbol=" *">電子郵件地址</div>
+                <div class="form__content--description"></div>
+                <input type="email" id="email" placeholder="你的電子郵件" required/>
+                <div class="form__content--required form__content--none">這是必填問題</div>
+            </div>
+            <div class="form__content">
+                <div class="form__content--title" data-symbol=" *">暱稱</div>
+                <div class="form__content--description">該如何稱呼你</div>
+                <input type="text" id="nickname" placeholder="您的回答" />
+                <div class="form__content--required form__content--none">這是必填問題</div>
+            </div>
+            <div class="form__content">
+                <div class="form__content--title" data-symbol=" *">報名類型</div>
+                <div class="form__content--description"></div>
+                <div class="form__content--option"><input type="radio" name="choose-one" id="newbie" /><label
+                        for="newbie">從零到一基礎班（兩個月後開始收保證金 5000，淘汰不退還，結業後兩個月內找到工作付一個月半薪水，沒工作不用付）</label>
+                </div>
+                <div class="form__content--option"><input type="radio" name="choose-one" id="engineer" /><label
+                        for="engineer">在職工程師加強班（兩個月後開始收保證金 5000，三個月時收學費 35000 元台幣，被淘汰不退還）</label>
+                </div>
+                <div class="form__content--required form__content--none">這是必填問題</div>
+            </div>
+            <div class="form__content">
+                <div class="form__content--title" data-symbol=" *">現在的職業</div>
+                <div class="form__content--description">範例：學生、前端工程師、待業中、業務</div>
+                <input type="text" id="job" placeholder="您的回答" />
+                <div class="form__content--required form__content--none">這是必填問題</div>
+            </div>
+            <div class="form__content">
+                <div class="form__content--title" data-symbol=" *">怎麼知道這個計畫的？</div>
+                <div class="form__content--description"></div>
+                <input type="text" id="how" placeholder="您的回答" />
+                <div class="form__content--required form__content--none">這是必填問題</div>
+            </div>
+            <div class="form__content">
+                <div class="form__content--title" data-symbol=" *">是否有程式相關背景？</div>
+                <div class="form__content--description">範例：無、高中時候學過C++、學過一點網頁前端、目前在資策會上課...</div>
+                <input type="text" id="learned" placeholder="您的回答" />
+                <div class="form__content--required form__content--none" calss="form__content--visible">這是必填問題</div>
+            </div>
+            <div class="form__content">
+                <div class="form__content--title">其他</div>
+                <div class="form__content--description">任何你想說的</div>
+                <input type="text" id="else" placeholder="您的回答" />
+            </div>
+            <div class="form__content">
+                <div class="form__content--btn">
+                    <input type="submit" value="提交" class="form__content--submit" />
+                <div class="form__content--description">請勿利用 Google 表單送出密碼。</div>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript" src="./index.js"></script>
+</body>
+
+</html>
