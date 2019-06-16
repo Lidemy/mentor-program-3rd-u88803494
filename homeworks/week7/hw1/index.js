@@ -1,4 +1,6 @@
 /* eslint-disable no-use-before-define */
+/* 這邊其實有一些問題，因為必須要去刪除監聽器以免在不當的時機被使用到，所以 function 就要被 ESlint 判斷為未宣告先使用。
+想了很久還是不能夠解決這個問題，所以就直接使用關閉這部分的功能了，也想請問老師像我這樣的問題該怎麼解決呢？ */
 let onChangeTime = ''; // 先在上層定義，這樣才可以跨 function 使用
 let onClickedTime = '';
 let round = ''; // 當太早按下按鈕的時候，清除計時使用
