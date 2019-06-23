@@ -4,7 +4,7 @@ function prizeResult(i) {
   const prizeContent = [{
     title: '恭喜你中頭獎了！日本東京來回雙人遊！',
     picture: './abroad.png',
-    bodyChange: 'body-first',
+    bodyChange: 'body--first',
   },
   {
     title: '二獎！90 吋電視一台！',
@@ -21,7 +21,7 @@ function prizeResult(i) {
   {
     title: '銘謝惠顧',
     picture: '', /* 這邊不給資料會變成 undefined，然後網頁會顯示圖片錯誤，所以使用空字串。 */
-    bodyChange: 'body-none',
+    bodyChange: 'body--none',
   }]; // 儲存得獎的恭喜詞與圖片路徑
   // 這邊是動態新增網頁的部分
   const container = document.querySelector('body');
