@@ -1,28 +1,91 @@
+body {
+    font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", sans-serif;
+    background-image: url('./lol-bg.jpg');
+    margin: 0;
+    color: white;
+}
+
+a:link {
+text-decoration: none;
+}
+
+a:visited {
+text-decoration: none;
+
+}
+
+a:hover {
+text-decoration: none;
+} /* a 標籤不變動 */
+
 .board {
-    border: 1px solid #333333;
-    box-sizing: border-box;
-    padding: 1px;
     margin: 100px auto 10px;
     text-align: center;
-    min-width: 320px;
-    max-width: 1230px;
+    min-width: 340px;
+    max-width: 1400px;
 }
 
 .board__title {
-    border: 1px solid #333333;
-    box-sizing: border-box;
-    padding: 1px;
-    margin: 1px;
+    font-size: 50px;
+    padding: 20px;
 }
 
 .twitch__block {
-    border: 1px solid #333333;
-    box-sizing: border-box;
-    padding: 1px;
-    margin: 1px;
-    width: 300px;
-    height: 300px;
+    width: 330px;
+    height: 260px;
     display: inline-flex;
     justify-content: center;
-    
+    margin: 10px 5px;
+    background: #000000AA;
+}
+
+.twitch__preview {
+    width: 320px;
+    height: 180px;
+    margin: 5px 0;
+}
+
+.twitch__info {
+    margin: 10px 0;
+    display: inline-flex;
+    width: 320px;
+} /* 這邊再次使用 inline-flex 才可以排成平行，用 dev tools 觀看會發現使用預設 block
+ 不知道原因何在，難道是.twitch__block 那邊的 inline-flex 只能指定當層嗎? */
+
+.twitch__logo {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin: 5px
+}
+
+.twitch__channel {
+    margin: 0 0 0 10px;
+    width: 250px;
+    text-align: start;
+}
+
+.twitch__status {
+    width: 250px;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 19px; /* 防止 a 標籤的變動 */
+    color: white;
+}
+
+.twitch__name {
+    width: 250px;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 5px 0;
+    font-size: 12px; /* 防止 a 標籤的變動 */
+    color: white;
+}
+
+@media screen and (max-width: 1400px) {
+    .board {
+        max-width: 1000px;
+    }
 }
