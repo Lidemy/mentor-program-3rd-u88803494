@@ -1,0 +1,29 @@
+body {
+  font-size: 30px;
+  font-weight: bolder;
+  font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", sans-serif;
+}
+
+.body--first {
+  background: #007FFF90;
+}
+
+.body--none {
+  color: white;
+  background: #333333;
+}
+
+.app {
+  max-width: 500px;
+  margin: 100px auto auto;
+}
+
+.app__prize {
+  display:flex;
+  justify-content: center;
+}
+
+.app__picture {
+  display:flex;
+  justify-content: center;
+}
