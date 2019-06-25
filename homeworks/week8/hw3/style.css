@@ -36,7 +36,8 @@ text-decoration: none;
     display: inline-flex;
     justify-content: center;
     margin: 10px 5px;
-    background: #000000AA;
+    background: #FFFFFF11;
+    border-radius: 10px;
 }
 
 .twitch__preview {
@@ -47,10 +48,9 @@ text-decoration: none;
 
 .twitch__info {
     margin: 10px 0;
-    display: inline-flex;
+    display: flex;
     width: 320px;
-} /* 這邊再次使用 inline-flex 才可以排成平行，用 dev tools 觀看會發現使用預設 block
- 不知道原因何在，難道是.twitch__block 那邊的 inline-flex 只能指定當層嗎? */
+}
 
 .twitch__logo {
     height: 50px;
@@ -82,10 +82,4 @@ text-decoration: none;
     margin: 5px 0;
     font-size: 12px; /* 防止 a 標籤的變動 */
     color: white;
-}
-
-@media screen and (max-width: 1400px) {
-    .board {
-        max-width: 1000px;
-    }
 }
