@@ -3,8 +3,6 @@ body {
 }
 
 .board {
-  border: 1px solid #000;
-  box-sizing: border-box;
   max-width: 350px;
   min-width: 200px;
   margin: 100px auto;
@@ -19,8 +17,6 @@ body {
 }
 
 .new {
-  border: 1px solid #000;
-  box-sizing: border-box;
   padding: 10px 0;
 }
 
@@ -38,7 +34,7 @@ body {
   margin: 3px;
 }
 
-.original {
+.message {
   border: 1px solid #000;
   box-sizing: border-box;
   margin: 20px;
@@ -46,14 +42,14 @@ body {
   padding: 0 5px;
 }
 
-.origin__title {  
+.message__title {  
   box-sizing: border-box;
   font-size: 20px;
   margin: 0 0 20px 0;
   text-align: center;
 }
 
-.original__content {
+.message__content {
   border: 1px solid #000;
   box-sizing: border-box;
   margin: 0 0 20px 0;
