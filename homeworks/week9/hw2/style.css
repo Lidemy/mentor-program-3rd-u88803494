@@ -1,0 +1,31 @@
+div{
+   border: 1px solid black;
+   box-sizing: border-box;
+   padding: 3px; 
+}
+
+body {
+    font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", sans-serif;
+  }
+
+.notice {
+    font-size: 30px;
+    text-align: center;
+    padding: 0 70px;
+}
+
+form {
+    border: 1px solid black;
+    box-sizing: border-box;
+    padding: 3px; 
+}
+
+.board {
+    width: 600px;
+    margin: auto;
+}
+
+.original＿＿comment {
+    min-height: 100px;
+    padding: 10px;
+}
