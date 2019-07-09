@@ -19,7 +19,7 @@ if ($id) { // 確認有無 ID
     setcookie("member_id", $id, time()+3600*24); // 埋 cookie
     header('Location: ./index.php');
   } else {
-    echo '查無帳號，請重新確認';
+    echo '帳號或密碼錯誤，請重新確認';
   }
 ?>
 
