@@ -1,0 +1,55 @@
+div {
+   border: 1px solid black;
+   box-sizing: border-box;
+   padding: 3px; 
+   margin: 1px;
+}
+
+body {
+    font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", sans-serif;
+}
+
+.notice {
+    font-size: 30px;
+    text-align: center;
+    padding: 0 70px;
+}
+
+div.member__notice {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+form {
+    border: 1px solid black;
+    box-sizing: border-box;
+    padding: 3px;
+    margin: 10px 1px;
+}
+
+.board {
+    width: 600px;
+    margin: auto;
+}
+
+.original＿＿comment {
+    min-height: 100px;
+    padding: 10px;
+    white-space: pre-line;
+}
+
+.original＿＿board ~ .original＿＿board {
+    margin-top: 30px;
+}
+
+.pages {
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.page {
+    margin:0 3px;
+}
