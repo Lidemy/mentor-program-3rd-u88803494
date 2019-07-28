@@ -13,7 +13,7 @@
     $row = $result->fetch_assoc();
     // 管理界面的提示以及歡迎
     echo '<div class="member">';
-    echo  '<a href="./signout.php">登出</a>';
+    echo  '<a href="./handle_signout.php">登出</a>';
     echo  ' <a href="./index.php">回到首頁</a>';
     echo '<div style="font-size:25px;">歡迎你 <b>' .$row['nickname']. '</b> 以下是你的留言列表</div>';
     echo '</div>';

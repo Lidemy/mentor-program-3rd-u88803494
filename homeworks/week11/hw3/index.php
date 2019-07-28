@@ -16,7 +16,7 @@
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         echo '<form action="./handle_add.php" method="post" class="new">';
-        echo    '<a href="./signout.php">登出</a>';
+        echo    '<a href="./handle_signout.php">登出</a>';
         echo    " <a href='./admin.php?user_id=$row[id]'>管理界面</a>";
         echo    '<div class="new__username">暱稱： '.$row['nickname']. '<input type="hidden" name="user_id" value=' . $row['id'] . ' /></div>';
         // 寫這樣才可以隱藏資料，固定暱稱
