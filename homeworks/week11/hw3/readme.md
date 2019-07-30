@@ -1,5 +1,43 @@
 #### 因為寫一寫太複雜才想到應該要寫這個作為紀錄，所以並沒有全部紀錄下來
 
+# 修改功能 2019/07/30 w11h3
+
+## 預計新增（待思考）
+新增 共通.php 專門放 function 
+security_check.php 改成通過驗證之後回傳使用者名稱，往後都使用使用者名稱撈資料
+新增一個共通 function 專門透過使用者名稱撈資料。
+然後需要一個 $user 來取得 使用者名稱，但影片介紹的沒有 nickname 的問題，所以這部份需要在思考
+拿掉 $user_id 的功能，通通使用 certificate 來找到是誰
+抓取頁面改為 count(*) 節省撈出來的資料
+
+## 實際修改
+1. security_check.php 改為直接驗證 cookie 有驗證到就從伺服器撈 username id 進來。
+   - 新增如果沒資料就導到首頁
+   - 因為 php 無法單純取得使用的檔名，所以作業上傳之前，要修改資料夾名稱才可以上傳。
+2. 開了一個 utils.php 把 funciont 放進去後另外引入。
+3. index.php 因為已經在 security_check.php 的驗證中取得 user 是誰，所以改為用 user 確認有無登入。
+4. 登入後的 signedIn 發文欄位修改：
+   - 傳入值改為 $user
+   - admin.php 後面接著的 user_id 取消
+   - 撈資料的指令更簡單，通過 $user 就可以撈到需要的資料了
+5. admin.php：
+   - function 移至 utils.php 並引入。
+   - 修改 function 改傳入 $user 並用之撈資料。
+   - 取消 $user_id 的部份。因為不需要了。
+6. 修改 delete.php 跟 update.php 以及其上傳功能。
+
+
+
+
+
+# 修改功能 2019/07/29 w11h3
+
+## 安全性檢查：
+security_check.php 修改為通過伺服器的 cookie 正確性驗證
+新增 admin.php 驗證功能
+security_check.php 增加轉址功能。如果發現 cookie 跟伺服器上資料不對，就轉到正確的 admin.php
+
+
 # 新增功能 2019/07/28 w11h3
 
 ## 安全性檢查：

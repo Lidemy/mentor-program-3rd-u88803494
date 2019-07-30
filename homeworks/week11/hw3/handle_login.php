@@ -46,9 +46,9 @@ function deleteOldCertificate($conn, $username) {
 
 if (password_verify($password, $account_data['password'])) { // 比對密碼
   $cookie_id = generatorId(); // 先生成後儲存，方便後續應用
-  deleteOldCertificate($conn, $username); // 刪除舊 cookie
+  deleteOldCertificate($conn, $username); // 刪除其他的 cookie
   setcookie("certificate", $cookie_id, time()+3600*24); // 埋 cookie
-  cookieUpdate($conn, $cookie_id, $username);
+  cookieUpdate($conn, $cookie_id, $username); // 把 cookie 上傳伺服器
   header('Location: ./index.php');
 } else {
   echo '帳號或密碼錯誤，請重新確認';
