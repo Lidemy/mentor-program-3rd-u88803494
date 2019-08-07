@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", sans-serif;
+  }
+
+.container {
+    width: 1024px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.job {
+    border: 1px solid grey;
+    padding: 10px;
+    width: 600px;
+    margin: 0 auto;
+    text-align-last: left;
+}
+
+.job ~ .job { /* job 與 job 的距離 */
+   margin-top: 20px;
+}
+
+.job__desc {
+    white-space: pre-line;
+}
