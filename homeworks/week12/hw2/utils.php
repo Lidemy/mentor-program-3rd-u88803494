@@ -55,12 +55,14 @@ function comments($conn, $page, $per, $user, $user_nickname, $page_is){
       echo   "<div class='original＿＿nickname'>$nickname</div>";
       echo   "<div class='original＿＿createdAt'>留言時間：$row[created_at]</div>";
       echo   "<div class='original＿＿comment'>$comment</div>";
-      // 改成有登入加上在首頁才顯示
-      if($user && $page_is === 'index.php') {
+      
+      if($user && $page_is === 'index.php') { // 改成有登入加上在首頁才顯示
         subCommentAdd($conn, $user, $row['parent_comment_id'], $user_nickname); 
         // 從伺服器上抓取下來的主留言 id(parent_comment_id) 直接傳入
-        subcomments($conn, $row['parent_comment_id'], $row['user_id'], $user); 
+        subComments($conn, $row['parent_comment_id'], $row['user_id'], $user); 
         // 傳入主留言的使用者 id(user_id)方便比對
+      } else if ($page_is === 'index.php') { // 沒登入在首頁
+        subComments($conn, $row['parent_comment_id'], $row['user_id'], $user); 
       }
       echo "</div>";
     }
