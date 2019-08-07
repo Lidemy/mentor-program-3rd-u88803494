@@ -1,0 +1,53 @@
+body {
+  font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", sans-serif;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #404092;
+  height: 71px;
+}
+
+.nav h1 {
+  display: inline-block;
+  color: white;
+}
+
+.nav a {
+  padding: 25px;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+}
+
+.nav a.active, .nav a:hover {
+  background: #6c6cb0;
+}
+
+.container {
+  margin-top: 100px;
+}
+
+.article {
+  border: 1px dotted #000;
+}
+
+.article ~ .article {
+  margin-top: 20px;
+}
+
+.article a {
+  text-decoration: none;
+  color: #000;
+}
+
+.about, .single-article p {
+  white-space: pre-line;
+}
+
+.comments {
+
+}
