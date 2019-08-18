@@ -1,18 +1,26 @@
-div {
-   border: 1px solid black;
-   box-sizing: border-box;
-   padding: 3px; 
-   margin: 1px;
-}
-
 body {
     font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", sans-serif;
+    background: #E4EEF8;
 }
 
-.notice {
+nav.navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    opacity:0.9;
+}
+.nav-member {
+    display: inline-flex;
+    margin: 0 10px;
+}
+
+div.notice {
     font-size: 30px;
     text-align: center;
-    padding: 0 70px;
+    padding: 10px 70px;
+    margin: 10px 0;
+    background: white;
 }
 
 div.member__notice {
@@ -20,24 +28,39 @@ div.member__notice {
     font-weight: bold;
     text-align: center;
     padding: 10px;
-    margin-bottom: 20px;
 }
 
 .member {
     margin:10px 0;
 }
 
-form {
-    border: 1px solid black;
-    box-sizing: border-box;
-    padding: 3px;
-    margin: 10px 1px;
+.board {
+    max-width: 600px;
+    margin: auto;
+    padding-bottom: 20px;
+    margin-top: 80px;
+    margin-bottom: 100px;
 }
 
-.board {
-    width: 600px;
-    margin: auto;
-    margin-bottom: 100px;
+textarea {
+    width: 100%;
+}
+
+.original＿＿board, .original＿＿main, .original__sub-comment, .original__sub-add, .new, .notice, .member__notice, .pages, .welcome {
+    border: 1px solid #DDDFE2;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.original＿＿board, .new, .member__notice, .pages, .welcome {
+    background: #fff;
+}
+.original＿＿board ~ .original＿＿board {
+    margin-top: 30px;
+}
+
+.original＿＿main {
+    background: honeydew;
 }
 
 .original＿＿comment {
@@ -46,22 +69,30 @@ form {
     white-space: pre-line;
 }
 
-.original__sub-comment, .original__sub-add  {
-    margin: 10px 1px 0px 40px;
+.original＿＿createdAt {
+    text-align: right;
+    font-size: 13px; 
 }
 
-.original＿＿board ~ .original＿＿board {
-    margin-top: 30px;
+.original__sub-comment, .original__sub-add  {
+    margin: 10px 0px 0px 40px;
+}
+
+.original＿＿nickname {
+    position: relative;
+    border-bottom: 1px solid #DDDFE2;
+
+}
+
+.member__interface {
+    display:inline-flex;
+    position: absolute;
+    right: 0;
 }
 
 .pages {
-    text-align: center;
-    word-wrap: break-word;
-    margin:10px 1px;
-}
-
-.page {
-    margin:0 3px;
+    padding-top: 1.6em;
+    margin:10px 0px;
 }
 
 .welcome {
@@ -72,4 +103,21 @@ form {
 .number {
     width: 200px;
     margin: 200px auto;
+}
+
+a ~ a {
+    margin-left: 10px;
+}
+@media (max-width: 992px) {
+    .nav-member {
+        display: block;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    div.notice {
+        font-size: 20px;
+        padding: 10px 20px;
+    }
 }

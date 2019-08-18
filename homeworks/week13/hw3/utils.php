@@ -1,9 +1,24 @@
 <?php
+// 導覽列
+function loginInterface($login, $page_is) {
+  if ($login) {
+    if ($page_is === 'index.php') {
+      echo "<div class='nav-member'><a href='./handle_signout.php'>登出</a></div>";
+      echo "<div class='nav-member'><a href='./admin.php'>管理介面</a></div>";
+    } else if ($page_is === 'admin.php') {
+      echo "<div class='nav-member'><a href='./handle_signout.php'>登出</a></div>";
+      echo "<div class='nav-member'><a href='./index.php'>回到首頁</a></div>";     
+    }
+  } else {
+    echo "<div class='nav-member'><a href='./login.php'>登入</a></div>";
+    echo "<div class='nav-member'><a href='./register.php'>註冊</a></div>";
+  }
+}
+// 導覽列
+
 // index.php 的部份。
 function notLogedIn() {
   echo "<div class='member'>";
-  echo   "<a href='./login.php'>登入</a> ";
-  echo   "<a href='./register.php'>註冊</a>";
   echo "<div class='member__notice'>需要<a href='./login.php'>登入</a>才可以留言哦！如果沒有帳號請<a href='./register.php'>註冊</a></div>";
   echo "</div>";
 }
@@ -12,11 +27,9 @@ function notLogedIn() {
 function signedIn() {
   $nickname = htmlspecialchars($_SESSION['login_nickname'], ENT_QUOTES, 'utf-8');
   echo "<form action='./handle_add.php' method='post' class='new'>";
-  echo    "<div><a href='./handle_signout.php'>登出</a>";
-  echo    " <a href='./admin.php'>管理界面</a></div>";
   echo    "<div class='new__username'>暱稱：$nickname<input type='hidden' name='user_id' value='$_SESSION[login_id]'/></div>";
   // 寫這樣才可以隱藏資料，固定暱稱
-  echo    "<div class='new__comment'><textarea name='comment' cols='70' rows='10'></textarea></div>";
+  echo    "<div class='new__comment'><textarea name='comment' rows='10'></textarea></div>";
   echo   "<input type='hidden' name='parent_id' value='0'>"; // 新增父留言屬性
   echo    "<div class='new__btn'><input type='submit' value='送出留言' /></div>";
   echo "</form>";
@@ -46,13 +59,15 @@ function comments($conn, $page, $per, $page_is, $login){
     while($row = $result->fetch_assoc()) {
       $nickname = htmlspecialchars($row['nickname'], ENT_QUOTES, 'utf-8');
       $comment = htmlspecialchars($row['comment'], ENT_QUOTES, 'utf-8');
-      echo "<div class='original＿＿board'>";
       // 刪除/編輯的界面，分別傳入登入者 id 跟 comment 作者的 id，比對成功就顯示刪除編輯功能
-      if ($login) echo memberInterface($row['user_id'], $row['parent_comment_id']);
-      echo   "<div class='original＿＿nickname'>$nickname</div>";
-      echo   "<div class='original＿＿createdAt'>留言時間：$row[created_at]</div>";
-      echo   "<div class='original＿＿comment'>$comment</div>";
-      
+      $is_login = $login === true ? memberInterface($row['user_id'], $row['parent_comment_id']) : "";
+      echo "<div class='original＿＿board'>";
+      echo   "<div class='original＿＿main'>";
+      // 刪除/編輯功能改成跟 nickname 同牌
+      echo    "<div class='original＿＿nickname'>$nickname $is_login</div>";
+      echo    "<div class='original＿＿comment'>$comment</div>";
+      echo    "<div class='original＿＿createdAt'>$row[created_at]</div>";
+      echo  "</div>";
       if($login && $page_is === 'index.php') { // 改成有登入加上在首頁才顯示
         subCommentAdd($row['parent_comment_id']); 
         // 從伺服器上抓取下來的主留言 id(parent_comment_id) 直接傳入
@@ -64,7 +79,7 @@ function comments($conn, $page, $per, $page_is, $login){
       echo "</div>";
     }
   } else {
-    echo "<div><h3>目前還沒有任何留言 <a href='./index.php'>回到首頁</a> 寫一些留言吧</h3></div>";
+    echo "<div class='original＿＿board'><h3>目前還沒有任何留言 <a href='./index.php'>回到首頁</a> 寫一些留言吧</h3></div>";
   }
 }
 
@@ -80,13 +95,13 @@ function subComments($conn, $parent_id, $main_user_id, $login) {
     while($row = $result->fetch_assoc()) {
       $nickname = htmlspecialchars($row['nickname'], ENT_QUOTES, 'utf-8');
       $comment = htmlspecialchars($row['comment'], ENT_QUOTES, 'utf-8');
-      $is_main = $main_user_id === $row['user_id'] ? "style='background:aliceblue;'" : ""; 
+      $is_main = $main_user_id === $row['user_id'] ? "original＿＿main" : ""; 
       // 跟主留言同作者就變色。$row['user_id'] 是這篇留言的作者 id 跟主留言作者做比較
-      echo   "<div class='original__sub-comment' $is_main>";
-      if ($login) echo memberInterface($row['user_id'], $row['id']);
-      echo     "<div class='original＿＿nickname'>$nickname</div>";
-      echo     "<div class='original＿＿createdAt'>留言時間：$row[created_at]</div>";
+      $is_login = $login === true ? memberInterface($row['user_id'], $row['id']) : "";
+      echo   "<div class='original__sub-comment $is_main'>";
+      echo     "<div class='original＿＿nickname'>$nickname $is_login</div>";
       echo     "<div class='original＿＿comment'>$comment</div>";
+      echo     "<div class='original＿＿createdAt'>$row[created_at]</div>";
       echo   "</div>";
     }
   }
@@ -97,33 +112,50 @@ function subCommentAdd($parent_id) {
   echo "<form action='./handle_add.php' method='post' class='original__sub-add'>";
   echo     "<div class='original＿＿nickname'>暱稱：$_SESSION[login_nickname]</div>";
   echo    "<input type='hidden' name='user_id' value=$_SESSION[login_id]/>";
-  echo    "<div class='new__comment'><textarea name='comment' cols='60' rows='3'></textarea></div>";
+  echo    "<div class='new__comment'><textarea name='comment' rows='3'></textarea></div>";
   echo   "<input type='hidden' name='parent_id' value = '$parent_id'>"; // 新增父留言屬性
   echo    "<div class='new__btn'><input type='submit' value='送出留言' /></div>";
   echo "</form>";
 }
 
 // 分頁功能
-function numPages($conn, $page, $per, $page_is, $user_id = '0'){
+function numPages($conn, $page, $per, $page_is){
   if($page_is === 'index.php') {
     $sql = "SELECT count(*) FROM `hugh_comments` WHERE parent_id = 0";
   } else if($page_is === 'admin.php') {
-    $sql = "SELECT count(*) FROM `hugh_comments` WHERE `user_id` = $user_id";
+    $sql = "SELECT count(*) FROM `hugh_comments` WHERE `user_id` = $_SESSION[login_id]";
   }
 
   $result = $conn->query($sql);
   
   $total = $result->fetch_assoc()['count(*)']; // 得知總共有幾筆資料 
   $pages = ceil($total/$per); // 總頁數
-  
+
+
   if ($pages) { // 因為跟 admin.php 共用，所以沒資料的時候顯示分頁很奇怪
-    echo "<div class='pages'>頁數："; // 印出頁數
+    echo "<nav class='pages' aria-label='Page navigation example'>";
+    echo "<ul class='pagination justify-content-center'>";
+    $disabled = $page === 1 ? "disabled" : ""; // 判斷是否當前頁面
+    echo   "<li class='page-item $disabled'>";
+    echo     "<a class='page-link' href='./$page_is?page=1' aria-label='Previous'>";
+    echo       "<span aria-hidden='true'>&laquo;</span>";
+    echo     "</a>";
+    echo   "</li>";  
     for($i = 1; $i <= $pages ;$i++) {
-      if ( $page-5 < $i && $i < $page+5 ) { // 只顯示鄰近的頁面。
-          echo "<a class='page' href='./$page_is?page=$i'>$i</a>";
+      if ( $page-3 < $i && $i < $page+3 ) { // 只顯示鄰近的頁面。
+        $disabled = $page === $i ? "disabled" : ""; // 判斷是否當前頁面
+        echo "<li class='page-item $disabled'><a class='page-link' href='./$page_is?page=$i'>$i</a></li>";
       }
     }
-    echo "</div>";
+    $i = $i - 1; // 調整一下，才可以抓到最後一頁
+    $disabled = $page === 4 ? "disabled" : ""; // 判斷是否當前頁面
+    echo    "<li class='page-item $disabled'>";
+    echo      "<a class='page-link' href='./$page_is?page=$i' aria-label='Next'>";
+    echo        "<span aria-hidden='true'>&raquo;</span>";
+    echo      "</a>";
+    echo    "</li>";
+    echo  "</ul>";
+    echo "</nav>";
   }
 }
 
@@ -131,27 +163,20 @@ function memberInterface($comment_user_id, $comment_id) {
   // 傳入留言作者 userid, 留言文章id
   // 當前使用者 id 改用 session 上的
   if ("$_SESSION[login_id]" === $comment_user_id) {
-    return "<div><a href='./update.php?id=$comment_id'>編輯文章</a>
-       <a href='./handle_delete.php?id=$comment_id'>刪除文章</a></div>";
+    return "<div class='member__interface'><a href='./update.php?id=$comment_id'>編輯 </a>
+       <a href='./handle_delete.php?id=$comment_id'>刪除</a></div>";
   }
 }
 // index.php 的部份。
 
 // admin.php 的部份。
-function userInterface($conn) {
-  $login_id = $_SESSION['login_id'];
-  $sql = "SELECT * FROM hugh_member WHERE id = $login_id";
-  $result = $conn->query($sql);
-  $row = $result->fetch_assoc();
+function userInterface() {
   // 管理界面的提示以及歡迎
-  $nickname = htmlspecialchars($row['nickname'], ENT_QUOTES, 'utf-8');
+  $nickname = htmlspecialchars($_SESSION['login_nickname'], ENT_QUOTES, 'utf-8');
   echo "<div class='member'>";
-  echo  "<div><a href='./handle_signout.php'>登出</a>";
-  echo  " <a href='./index.php'>回到首頁</a></div>";
   echo "<div class='welcome'>歡迎你 <b>$nickname</b></br> 以下是你的留言列表</div>";
   echo "</div>";
 }
-
 // admin.php 的部份。
 
 ?>
