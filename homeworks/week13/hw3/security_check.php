@@ -1,7 +1,9 @@
 <?php
-  if(isset($_COOKIE["PHPSESSID"]) || !empty($_COOKIE["PHPSESSID"])) {
+  session_start(); // 監測 session 
+  if(isset($_SESSION["login_id"]) || !empty($_SESSION["login_id"]) ||
+    isset($_SESSION["login_username"]) || !empty($_SESSION["login_username"]) ||
+    isset($_SESSION["login_nickname"]) || !empty($_SESSION["login_nickname"])) {
     $login = true;
-    session_start(); // 監測 session 
   } else {
     $login = false;
   }

@@ -14,7 +14,7 @@ $(document).ready(() => {
         <button type="button" class="todolist__delete btn btn-outline-secondary">刪除</button>
         <hr>
       </div>`;
-      $('.todolist__input').append(result);
+      $('.todolitst__list').prepend(result);
     }
   });
 

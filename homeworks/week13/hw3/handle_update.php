@@ -9,14 +9,17 @@
 	if (empty($id) || empty($comment)) {
 		die('empty date');
 	}
-
-  $sql = "UPDATE hugh_comments SET comment = '$comment' WHERE id = $id";
-	$result = $conn->query($sql);
-	if ($result) {
+	
+	// SQL Injection 處理
+	$stmt = $conn->prepare("UPDATE hugh_comments SET `comment` = ? WHERE id = ?");
+  $stmt->bind_param("si", $comment, $id);
+	
+	if ($stmt->execute()) {
 		header("Location: $source_URL");
 	} else {
 		die("failed: $conn->error");
 	}
-	
+
+  $stmt->close();
   $conn->close();
 ?>

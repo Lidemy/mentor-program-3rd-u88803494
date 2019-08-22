@@ -8,7 +8,8 @@ nav.navbar {
     top: 0;
     right: 0;
     left: 0;
-    opacity:0.9;
+    opacity:0.8;
+    z-index: 1;
 }
 .nav-member {
     display: inline-flex;
@@ -46,30 +47,30 @@ textarea {
     width: 100%;
 }
 
-.original＿＿board, .original＿＿main, .original__sub-comment, .original__sub-add, .new, .notice, .member__notice, .pages, .welcome {
+.original__board, .original__main, .original__sub-comment, .new, .notice, .member__notice, .welcome {
     border: 1px solid #DDDFE2;
     padding: 10px;
     border-radius: 8px;
 }
 
-.original＿＿board, .new, .member__notice, .pages, .welcome {
+.original__board, .new, .member__notice, .welcome {
     background: #fff;
 }
-.original＿＿board ~ .original＿＿board {
-    margin-top: 30px;
+.original__board ~ .original__board {
+    margin-top: 20px;
 }
 
-.original＿＿main {
+.original__main-bgcolor {
     background: honeydew;
 }
 
-.original＿＿comment {
+.original__comment {
     min-height: 100px;
     padding: 10px;
     white-space: pre-line;
 }
 
-.original＿＿createdAt {
+.original__createdAt {
     text-align: right;
     font-size: 13px; 
 }
@@ -78,7 +79,7 @@ textarea {
     margin: 10px 0px 0px 40px;
 }
 
-.original＿＿nickname {
+.original__nickname {
     position: relative;
     border-bottom: 1px solid #DDDFE2;
 
@@ -91,7 +92,6 @@ textarea {
 }
 
 .pages {
-    padding-top: 1.6em;
     margin:10px 0px;
 }
 

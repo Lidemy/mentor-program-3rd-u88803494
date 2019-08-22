@@ -59,14 +59,16 @@ function comments($conn, $page, $per, $page_is, $login){
     while($row = $result->fetch_assoc()) {
       $nickname = htmlspecialchars($row['nickname'], ENT_QUOTES, 'utf-8');
       $comment = htmlspecialchars($row['comment'], ENT_QUOTES, 'utf-8');
+
       // 刪除/編輯的界面，分別傳入登入者 id 跟 comment 作者的 id，比對成功就顯示刪除編輯功能
       $is_login = $login === true ? memberInterface($row['user_id'], $row['parent_comment_id']) : "";
-      echo "<div class='original＿＿board'>";
-      echo   "<div class='original＿＿main'>";
+      // 多傳入一個值，表示是在哪邊的留言，以方便 js 判斷
+      echo "<div class='original__board'>";
+      echo   "<div class='original__main original__main-bgcolor'>";
       // 刪除/編輯功能改成跟 nickname 同牌
-      echo    "<div class='original＿＿nickname'>$nickname $is_login</div>";
-      echo    "<div class='original＿＿comment'>$comment</div>";
-      echo    "<div class='original＿＿createdAt'>$row[created_at]</div>";
+      echo    "<div class='original__nickname'>$nickname $is_login</div>";
+      echo    "<div class='original__comment'>$comment</div>";
+      echo    "<div class='original__createdAt'>$row[created_at]</div>";
       echo  "</div>";
       if($login && $page_is === 'index.php') { // 改成有登入加上在首頁才顯示
         subCommentAdd($row['parent_comment_id']); 
@@ -79,7 +81,7 @@ function comments($conn, $page, $per, $page_is, $login){
       echo "</div>";
     }
   } else {
-    echo "<div class='original＿＿board'><h3>目前還沒有任何留言 <a href='./index.php'>回到首頁</a> 寫一些留言吧</h3></div>";
+    echo "<div class='original__board'><h3>目前還沒有任何留言 <a href='./index.php'>回到首頁</a> 寫一些留言吧</h3></div>";
   }
 }
 
@@ -90,27 +92,29 @@ function subComments($conn, $parent_id, $main_user_id, $login) {
   $sql = "SELECT C.id, C.comment, C.created_at, M.nickname, C.user_id FROM hugh_comments AS C LEFT JOIN hugh_member AS M 
   ON C.user_id = M.id WHERE C.parent_id = $parent_id ORDER BY created_at DESC ";
 
+  echo "<div class='original__sub-all'>"; // 多這行才可以包覆並把資料印在裡面。
   $result = $conn->query($sql);
   if ($result->num_rows>0) { // num_rows 會告訴有幾筆資料。
     while($row = $result->fetch_assoc()) {
       $nickname = htmlspecialchars($row['nickname'], ENT_QUOTES, 'utf-8');
       $comment = htmlspecialchars($row['comment'], ENT_QUOTES, 'utf-8');
-      $is_main = $main_user_id === $row['user_id'] ? "original＿＿main" : ""; 
+      $is_main = $main_user_id === $row['user_id'] ? "original__main-bgcolor" : ""; 
       // 跟主留言同作者就變色。$row['user_id'] 是這篇留言的作者 id 跟主留言作者做比較
       $is_login = $login === true ? memberInterface($row['user_id'], $row['id']) : "";
       echo   "<div class='original__sub-comment $is_main'>";
-      echo     "<div class='original＿＿nickname'>$nickname $is_login</div>";
-      echo     "<div class='original＿＿comment'>$comment</div>";
-      echo     "<div class='original＿＿createdAt'>$row[created_at]</div>";
+      echo     "<div class='original__nickname'>$nickname $is_login</div>";
+      echo     "<div class='original__comment'>$comment</div>";
+      echo     "<div class='original__createdAt'>$row[created_at]</div>";
       echo   "</div>";
     }
   }
+  echo "</div>";
 }
 
 function subCommentAdd($parent_id) {
   // 需要多傳入一個父留言 id，另傳入登入中使用者的 nickname 節省資源的撈取
-  echo "<form action='./handle_add.php' method='post' class='original__sub-add'>";
-  echo     "<div class='original＿＿nickname'>暱稱：$_SESSION[login_nickname]</div>";
+  echo "<form action='./handle_add.php' method='post' class='original__sub-add new'>";
+  echo     "<div class='original__nickname'>暱稱：$_SESSION[login_nickname]</div>";
   echo    "<input type='hidden' name='user_id' value=$_SESSION[login_id]/>";
   echo    "<div class='new__comment'><textarea name='comment' rows='3'></textarea></div>";
   echo   "<input type='hidden' name='parent_id' value = '$parent_id'>"; // 新增父留言屬性
@@ -138,7 +142,7 @@ function numPages($conn, $page, $per, $page_is){
     $disabled = $page === 1 ? "disabled" : ""; // 判斷是否當前頁面
     echo   "<li class='page-item $disabled'>";
     echo     "<a class='page-link' href='./$page_is?page=1' aria-label='Previous'>";
-    echo       "<span aria-hidden='true'>&laquo;</span>";
+    echo       "<span aria-hidden='true'>第一頁</span>";
     echo     "</a>";
     echo   "</li>";  
     for($i = 1; $i <= $pages ;$i++) {
@@ -147,11 +151,10 @@ function numPages($conn, $page, $per, $page_is){
         echo "<li class='page-item $disabled'><a class='page-link' href='./$page_is?page=$i'>$i</a></li>";
       }
     }
-    $i = $i - 1; // 調整一下，才可以抓到最後一頁
     $disabled = $page === 4 ? "disabled" : ""; // 判斷是否當前頁面
     echo    "<li class='page-item $disabled'>";
-    echo      "<a class='page-link' href='./$page_is?page=$i' aria-label='Next'>";
-    echo        "<span aria-hidden='true'>&raquo;</span>";
+    echo      "<a class='page-link' href='./$page_is?page=$pages' aria-label='Next'>";
+    echo        "<span aria-hidden='true'>最後一頁</span>";
     echo      "</a>";
     echo    "</li>";
     echo  "</ul>";
@@ -163,8 +166,11 @@ function memberInterface($comment_user_id, $comment_id) {
   // 傳入留言作者 userid, 留言文章id
   // 當前使用者 id 改用 session 上的
   if ("$_SESSION[login_id]" === $comment_user_id) {
-    return "<div class='member__interface'><a href='./update.php?id=$comment_id'>編輯 </a>
-       <a href='./handle_delete.php?id=$comment_id'>刪除</a></div>";
+    return 
+      "<div class='member__interface'>
+        <a class='member__edit' href='./update.php?id=$comment_id' data-id='$comment_id'>編輯</a>
+        <a class='member__delete' href='' data-id='$comment_id'>刪除</a>
+      </div>";
   }
 }
 // index.php 的部份。
