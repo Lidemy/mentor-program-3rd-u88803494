@@ -29,8 +29,8 @@ function signedIn() {
   echo "<form action='./handle_add.php' method='post' class='new'>";
   echo    "<div class='new__username'>暱稱：$nickname<input type='hidden' name='user_id' value='$_SESSION[login_id]'/></div>";
   // 寫這樣才可以隱藏資料，固定暱稱
-  echo    "<div class='new__comment'><textarea name='comment' rows='10'></textarea></div>";
-  echo   "<input type='hidden' name='parent_id' value='0'>"; // 新增父留言屬性
+  echo    "<div class='new__comment'><textarea name='comment' rows='10' placeholder='請輸入留言'></textarea></div>";
+  echo    "<input type='hidden' name='parent_id' value='0'>"; // 新增父留言屬性
   echo    "<div class='new__btn'><input type='submit' value='送出留言' /></div>";
   echo "</form>";
 }
@@ -56,6 +56,7 @@ function comments($conn, $page, $per, $page_is, $login){
 
   $result = $conn->query($sql);
   if ($result->num_rows>0) { // num_rows 會告訴有幾筆資料。
+    echo "<div class='original__main-all'>"; // 另外把 主留言包起來，方便 prepend()
     while($row = $result->fetch_assoc()) {
       $nickname = htmlspecialchars($row['nickname'], ENT_QUOTES, 'utf-8');
       $comment = htmlspecialchars($row['comment'], ENT_QUOTES, 'utf-8');
@@ -63,13 +64,13 @@ function comments($conn, $page, $per, $page_is, $login){
       // 刪除/編輯的界面，分別傳入登入者 id 跟 comment 作者的 id，比對成功就顯示刪除編輯功能
       $is_login = $login === true ? memberInterface($row['user_id'], $row['parent_comment_id']) : "";
       // 多傳入一個值，表示是在哪邊的留言，以方便 js 判斷
-      echo "<div class='original__board'>";
-      echo   "<div class='original__main original__main-bgcolor'>";
+      echo  "<div class='original__board'>";
+      echo    "<div class='original__main original__main-bgcolor'>";
       // 刪除/編輯功能改成跟 nickname 同牌
-      echo    "<div class='original__nickname'>$nickname $is_login</div>";
-      echo    "<div class='original__comment'>$comment</div>";
-      echo    "<div class='original__createdAt'>$row[created_at]</div>";
-      echo  "</div>";
+      echo      "<div class='original__nickname'>$nickname $is_login</div>";
+      echo      "<div class='original__comment'>$comment</div>";
+      echo      "<div class='original__createdAt'>$row[created_at]</div>";
+      echo    "</div>";
       if($login && $page_is === 'index.php') { // 改成有登入加上在首頁才顯示
         subCommentAdd($row['parent_comment_id']); 
         // 從伺服器上抓取下來的主留言 id(parent_comment_id) 直接傳入
@@ -78,8 +79,9 @@ function comments($conn, $page, $per, $page_is, $login){
       } else if ($page_is === 'index.php') { // 沒登入在首頁
         subComments($conn, $row['parent_comment_id'], $row['user_id'], $login); 
       }
-      echo "</div>";
+      echo "</div>"; // class='original__board' 的結尾
     }
+    echo "</div>"; // class='original__main-all' 的結尾
   } else {
     echo "<div class='original__board'><h3>目前還沒有任何留言 <a href='./index.php'>回到首頁</a> 寫一些留言吧</h3></div>";
   }
@@ -92,8 +94,9 @@ function subComments($conn, $parent_id, $main_user_id, $login) {
   $sql = "SELECT C.id, C.comment, C.created_at, M.nickname, C.user_id FROM hugh_comments AS C LEFT JOIN hugh_member AS M 
   ON C.user_id = M.id WHERE C.parent_id = $parent_id ORDER BY created_at DESC ";
 
-  echo "<div class='original__sub-all'>"; // 多這行才可以包覆並把資料印在裡面。
   $result = $conn->query($sql);
+  echo "<div class='original__sub-all'>"; 
+  // 多這行才可以包覆並把資料印在裡面。放這邊變成一定印出，這樣子留言才有位置 render
   if ($result->num_rows>0) { // num_rows 會告訴有幾筆資料。
     while($row = $result->fetch_assoc()) {
       $nickname = htmlspecialchars($row['nickname'], ENT_QUOTES, 'utf-8');
@@ -108,16 +111,16 @@ function subComments($conn, $parent_id, $main_user_id, $login) {
       echo   "</div>";
     }
   }
-  echo "</div>";
+  echo "</div>"; // class='original__sub-all' 的結尾
 }
 
 function subCommentAdd($parent_id) {
   // 需要多傳入一個父留言 id，另傳入登入中使用者的 nickname 節省資源的撈取
-  echo "<form action='./handle_add.php' method='post' class='original__sub-add new'>";
-  echo     "<div class='original__nickname'>暱稱：$_SESSION[login_nickname]</div>";
+  echo  "<form action='./handle_add.php' method='post' class='original__sub-add new'>";
+  echo    "<div class='original__nickname'>暱稱：$_SESSION[login_nickname]</div>";
   echo    "<input type='hidden' name='user_id' value=$_SESSION[login_id]/>";
-  echo    "<div class='new__comment'><textarea name='comment' rows='3'></textarea></div>";
-  echo   "<input type='hidden' name='parent_id' value = '$parent_id'>"; // 新增父留言屬性
+  echo    "<div class='new__comment'><textarea name='comment' rows='3' placeholder='請輸入留言'></textarea></div>";
+  echo    "<input type='hidden' name='parent_id' value = '$parent_id'>"; // 新增父留言屬性
   echo    "<div class='new__btn'><input type='submit' value='送出留言' /></div>";
   echo "</form>";
 }
@@ -135,7 +138,6 @@ function numPages($conn, $page, $per, $page_is){
   $total = $result->fetch_assoc()['count(*)']; // 得知總共有幾筆資料 
   $pages = ceil($total/$per); // 總頁數
 
-
   if ($pages) { // 因為跟 admin.php 共用，所以沒資料的時候顯示分頁很奇怪
     echo "<nav class='pages' aria-label='Page navigation example'>";
     echo "<ul class='pagination justify-content-center'>";
@@ -151,7 +153,8 @@ function numPages($conn, $page, $per, $page_is){
         echo "<li class='page-item $disabled'><a class='page-link' href='./$page_is?page=$i'>$i</a></li>";
       }
     }
-    $disabled = $page === 4 ? "disabled" : ""; // 判斷是否當前頁面
+    $disabled = "$page" === "$pages" ? "disabled" : ""; 
+    // 最後一頁。需判斷是否當前頁面，要轉型態，所以各自加上雙引號
     echo    "<li class='page-item $disabled'>";
     echo      "<a class='page-link' href='./$page_is?page=$pages' aria-label='Next'>";
     echo        "<span aria-hidden='true'>最後一頁</span>";
@@ -185,4 +188,20 @@ function userInterface() {
 }
 // admin.php 的部份。
 
+// handle_add.php 的部份。
+function getParentUser($conn, $parent_id) {
+  // 通過 parent_id 找出主作者的 user_id 並跟送出留言的作者 user_id 做比較。同一人就回傳 classname
+  $stmt_result = $conn->prepare("SELECT user_id AS main_user_id FROM `hugh_comments` WHERE id = ?");
+  $stmt_result->bind_param("i", $parent_id);
+  $stmt_result->execute();
+
+  $result = $stmt_result->get_result();
+  if ($result->num_rows>0) {
+    $row = $result->fetch_assoc();
+    return $row['main_user_id'] === $_SESSION['login_id'] ? 'original__main-bgcolor' : '';
+  } else {
+    return '';
+  }
+}
+// handle_add.php 的部份。
 ?>

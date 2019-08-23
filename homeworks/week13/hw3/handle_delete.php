@@ -16,12 +16,12 @@
   if($stmt->execute()) {
     echo json_encode(array(
       "success" => "true",
-      ));
+      ), JSON_UNESCAPED_UNICODE);
     //header("Location: $_SERVER[HTTP_REFERER]");
   } else {
     echo json_encode(array(
       "success" => "failed: $conn->error",
-      ));
+      ), JSON_UNESCAPED_UNICODE);
     // die("failed: $conn->error");
   }
   
