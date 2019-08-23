@@ -64,8 +64,6 @@ $(document).ready(() => {
 
             // 清空相對應的 textarea
             $(e.target.closest('form')).find('textarea').val('');
-
-            // 添加完成之後要移除輸入框的內容
             return false; // 加了這行才不會執行完之後又繼續執行下方
           }
 
