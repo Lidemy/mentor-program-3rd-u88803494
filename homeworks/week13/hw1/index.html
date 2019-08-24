@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> week13 hw1 實作基本網格系統 </title>
+  <style>
+    .container {
+      box-sizing: border-box;
+      border: 1px solid black;
+      padding: 0 1px;
+      max-width: 960px;
+      margin: auto;
+    }
+
+    .row {
+      box-sizing: border-box;
+      display: inline-flex;
+      width: 100%;
+    }
+
+    .row>div {
+      box-sizing: border-box;
+      border: 1px solid black;
+      text-align: center;
+      flex: 1;
+      word-break: break-all;
+      height: 80px;
+      margin: 2px 1px;
+    }
+
+    @media screen and (max-width: 720px) {
+      .row {
+        display: inline-block;
+      }
+
+      .row>div {
+        margin: 2px auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col1">text1</div>
+      <div class="col2">text2</div>
+      <div class="col3">text3</div>
+      <div class="col4">text4</div>
+      <div class="col5">text5</div>
+      <div class="col6">text6</div>
+      <div class="col7">text7</div>
+      <div class="col8">text8</div>
+      <div class="col9">text9</div>
+      <div class="col10">text10</div>
+      <div class="col11">text11</div>
+      <div class="col12">text12</div>
+    </div>
+  </div>
+</body>
+
+</html>
