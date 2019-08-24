@@ -68,7 +68,7 @@ function comments($conn, $page, $per, $page_is, $login){
       echo    "<div class='original__main original__main-bgcolor'>";
       // 刪除/編輯功能改成跟 nickname 同牌
       echo      "<div class='original__nickname'>$nickname $is_login</div>";
-      echo      "<div class='original__comment'>$comment</div>";
+      echo      "<pre class='original__comment'>$comment</pre>";
       echo      "<div class='original__createdAt'>$row[created_at]</div>";
       echo    "</div>";
       if($login && $page_is === 'index.php') { // 改成有登入加上在首頁才顯示
@@ -82,7 +82,7 @@ function comments($conn, $page, $per, $page_is, $login){
       echo "</div>"; // class='original__board' 的結尾
     }
     echo "</div>"; // class='original__main-all' 的結尾
-  } else {
+  } else if ($page_is === 'admin.php') { // 只有在 admin 為空才顯示
     echo "<div class='original__board'><h3>目前還沒有任何留言 <a href='./index.php'>回到首頁</a> 寫一些留言吧</h3></div>";
   }
 }
@@ -106,7 +106,7 @@ function subComments($conn, $parent_id, $main_user_id, $login) {
       $is_login = $login === true ? memberInterface($row['user_id'], $row['id']) : "";
       echo   "<div class='original__sub-comment $is_main'>";
       echo     "<div class='original__nickname'>$nickname $is_login</div>";
-      echo     "<div class='original__comment'>$comment</div>";
+      echo     "<pre class='original__comment'>$comment</pre>";
       echo     "<div class='original__createdAt'>$row[created_at]</div>";
       echo   "</div>";
     }

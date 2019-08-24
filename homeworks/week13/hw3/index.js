@@ -54,7 +54,7 @@ $(document).ready(() => {
                   <a class='member__delete' href='' data-id=${res.id}>刪除</a>
                 </div>
               </div>
-              <div class='original__comment'>${res.comment}</div>
+              <pre class='original__comment'>${res.comment}</pre>
               <div class='original__createdAt'>${res.created_at}</div>
             </div>`;
 
@@ -83,7 +83,7 @@ $(document).ready(() => {
                     <a class='member__delete' href='' data-id=${res.id}>刪除</a>
                   </div>
                 </div>
-                <div class='original__comment'>${res.comment}</div>
+                <pre class='original__comment'>${res.comment}</pre>
                 <div class='original__createdAt'>${res.created_at}</div>
               </div>
               <form action='./handle_add.php' method='post' class='original__sub-add new'>

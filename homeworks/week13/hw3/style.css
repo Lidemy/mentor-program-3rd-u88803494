@@ -19,7 +19,7 @@ nav.navbar {
 div.notice {
     font-size: 30px;
     text-align: center;
-    padding: 10px 70px;
+    padding: 10px 15%;
     margin: 10px 0;
     background: white;
 }
@@ -36,7 +36,7 @@ div.member__notice {
 }
 
 .board {
-    max-width: 600px;
+    max-width: 700px;
     margin: auto;
     padding-bottom: 20px;
     margin-top: 80px;
@@ -67,7 +67,9 @@ textarea {
 .original__comment {
     min-height: 100px;
     padding: 10px;
-    white-space: pre-line;
+    font-size: 100%;
+    white-space: pre-wrap;
+    word-break:break-word;
 }
 
 .original__createdAt {
