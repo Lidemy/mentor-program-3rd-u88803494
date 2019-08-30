@@ -1,4 +1,6 @@
   <?php
+  session_start(); // session 機制
+
   require_once('./conn.php');
 
   $username = $_POST['username'];
@@ -25,8 +27,6 @@
   $result = $stmt->execute();
   
   if ($result) {
-    session_start(); // 建立 PHPSESSID
-
     // id 是伺服器給的，所以就要再次連線獲取
     $stmt_data = $conn->prepare("SELECT * FROM `hugh_member` WHERE `username` = ?");
     $stmt_data->bind_param("s", $username);

@@ -1,4 +1,6 @@
 <?php
+  session_start(); // session 機制
+
   require_once('./conn.php');
   require_once('./security_check.php');
   include_once('./utils.php');
