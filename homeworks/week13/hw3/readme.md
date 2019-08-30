@@ -1,5 +1,11 @@
 ### 待新增功能
 
+# 修改功能 2019/08/23 w13h3
+
+## 實際修改
+- 為了方便知道哪邊有用到 session，把用得到的地方都額外寫入 `session_start();`
+- 拿掉 handle_login.php 跟 handle_register.php 的 `session_start();`
+
 
 # 修改功能 2019/08/24 w13h3
 

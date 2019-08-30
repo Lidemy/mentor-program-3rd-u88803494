@@ -1,7 +1,9 @@
 <?php
+  session_start(); // session 機制
+
   require_once('./conn.php');
   include_once('./utils.php');
-
+  
   $username = $_POST['username'];
   $password = $_POST['password'];
 
@@ -21,9 +23,6 @@
   $account_data = $result->fetch_assoc(); // 取得伺服器上的資料
 
   if (password_verify($password, $account_data['password'])) { // 比對密碼
-   
-    session_start(); // 建立 PHPSESSID
-
     // 建立使用者資料
     $_SESSION['login_id'] = $account_data['id'];
     $_SESSION['login_username'] = $account_data['username'];

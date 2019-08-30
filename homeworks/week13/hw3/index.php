@@ -1,4 +1,6 @@
 <?php
+  session_start(); // session 機制
+
   require_once('./conn.php');
   require_once('./security_check.php');
   include_once('./utils.php');
@@ -9,7 +11,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title> [week13] ajax & 界面美化 </title>
+  <title> [week14] 修正 session 位置 </title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="./style.css">
 </head>
