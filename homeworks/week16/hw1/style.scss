@@ -1,0 +1,139 @@
+// 顏色管理
+$indexBackgroundColor: #E4EEF8; // body
+$noticeBackgroundColor: white; // div.notice
+$blockBackgroundColor: #fff; // 區塊的背景色
+$commentBorderColor: #DDDFE2; // 邊匡/線框顏色
+$sameAuthorColor: honeydew; // 同作者留言的顏色
+
+body {
+  font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", sans-serif;
+  background: $indexBackgroundColor;
+}
+
+nav.navbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  opacity:0.8;
+  z-index: 1;
+}
+
+.nav-member { // 微幅調整 navbar
+  display: inline-flex;
+  margin: 0 10px;
+}
+
+.board { // 整個區塊
+  max-width: 700px;
+  margin: auto;
+  padding-bottom: 20px;
+  margin-top: 80px;
+  margin-bottom: 100px;
+}
+
+div.notice { // 資安警告，預計之後會移除這塊
+  font-size: 30px;
+  text-align: center;
+  padding: 10px 15%;
+  margin: 10px 0;
+  background: $noticeBackgroundColor;
+  border: 1px solid $commentBorderColor;
+  border-radius: 8px;
+}
+
+.welcome { // 管理界面的歡迎
+  font-size:25px;
+  margin: 10px 1px 0px;
+  @extend .new;
+}
+
+.member { // 未登入的提示視窗
+  margin:10px 0;
+  &__notice {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    @extend .new;
+  }
+}
+
+.new { // 新增留言的區塊，子留言另外以在調整過
+  border: 1px solid $commentBorderColor;
+  padding: 10px;
+  border-radius: 8px;
+  background: $blockBackgroundColor;
+}
+
+textarea { // 輸入區
+  width: 100%;
+}
+
+.original { // 留言的部份
+  &__main, &__sub-comment, &__board { // 使區塊有邊線，較好看
+    @extend .new;
+  } // 寫一起，反正主留言跟同作者子留言會被 bgcolor 蓋掉
+
+  &__board ~ &__board {
+    margin-top: 20px;
+  }
+
+  &__main-bgcolor { // 用來標示主子留言顏色，結構改成覆蓋，所以位置一定要在 main 的底下。
+    background: $sameAuthorColor;
+  }
+
+  &__comment {
+    min-height: 100px;
+    padding: 10px;
+    font-size: 100%;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  &__createdAt {
+    text-align: right;
+    font-size: 13px; 
+  }
+
+  &__sub-comment, &__sub-add  { // 針對子留言部份的調整
+    margin: 10px 0px 0px 40px;
+  }
+
+  &__nickname {
+    position: relative;
+    border-bottom: 1px solid $commentBorderColor;
+  }
+}
+
+.number { // 登入的部份
+  width: 200px;
+  margin: 200px auto;
+  &__interface {
+    display:inline-flex;
+    position: absolute;
+    right: 0;
+  }
+}
+
+.pages { // 分頁的微調整
+  margin:10px 0px;
+}
+
+a ~ a { // 針對編輯刪除的部份
+  margin-left: 10px;
+}
+
+@media (max-width: 992px) {
+  .nav-member {
+      display: block;
+      margin: 10px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  div.notice {
+      font-size: 20px;
+      padding: 10px 20px;
+  }
+}
