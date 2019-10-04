@@ -1,4 +1,5 @@
-/* eslint-disable*/
+/* eslint-disable*/ 
+// 是說因為沒引入，所以會產生錯誤，關於這部份我看其他同學的作業沒這問題，但我始終找不到原因
 const { src, dest, parallel } = require('gulp');
 const babel = require('gulp-babel');
 const uglity = require('gulp-uglify');

@@ -1,3 +1,3 @@
 const add = require('./utils');
 
-console.log(add.add(10, 3));
+document.querySelector('.add').innerHTML = `<h1>${add(10, 3)}</h1>`;
