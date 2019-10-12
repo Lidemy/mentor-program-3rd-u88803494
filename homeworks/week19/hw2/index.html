@@ -1,0 +1,115 @@
+<!doctype html>
+
+</html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title> week19 AJAX todolist </title>
+
+  <style>
+    body {
+      font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", sans-serif;
+    }
+
+    .todolist__done {
+      margin-top: 0.5rem;
+    }
+
+    .todolist__content {
+      font-size: 19px;
+      padding-right: 150px;
+    }
+
+    .todolist__edit {
+      position: absolute;
+      right: 65px;
+      top: 0;
+      display: inline-block;
+    }
+
+    .todolist__delete {
+      position: absolute;
+      right: 0;
+      top: 0;
+      display: inline-block;
+    }
+
+    .editing__background {
+      display: none;
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      z-index: 1001;
+      -moz-opacity: 0.8;
+      opacity: .80;
+      filter: alpha(opacity=88);
+    }
+
+    .editing__area {
+      display: none;
+      position: absolute;
+      top: 25%;
+      left: 25%;
+      width: 55%;
+      /* height: 55%; 用不到*/
+      padding: 20px;
+      border: 10px solid aquamarine;
+      border-radius: 10px;
+      background-color: white;
+      z-index: 1002;
+      overflow: auto;
+    }
+
+    .editing__cancel {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="todolist__input">
+      <h1> todolist </h1>
+      <input class="form-control form-control-sm" id="input" type="text" placeholder="輸入代辦事項 輸入完成按下 enter 送出">
+      <hr>
+    </div>
+    <div class="todolist__list"></div>
+
+    <!--編輯視窗-->
+    <div id="light" class="editing__area">
+      <h1>編輯頁面</h1>
+      <hr>
+      <h6>Notice：編輯完成按下 enter 即可送出資料</h6>
+      <input class="form-control form-control-sm" id="edit" type="text" placeholder="編輯完成後按下 enter 即可">
+      <input type="hidden" class = "editing__id" name="editing__id" />
+      <button type="button" class="editing__cancel btn btn-outline-secondary">取消編輯</button>
+    </div>
+    <!--黑背景特效-->
+    <div id="fade" class="editing__background"></div>
+  </div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="index.js"></script>
+
+  </div>
+</body>
+
+</html>
