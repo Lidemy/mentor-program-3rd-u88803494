@@ -1,0 +1,52 @@
+.nav {
+  display: flex;
+  padding: 0 10px;
+  background: aqua;
+  height: 65px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.9;
+}
+
+.nav > h1, .nav > h3 {
+  margin: 0;
+  padding: 0 20px;
+  height: 100%;
+  line-height: 65px; /* 置中效果 */
+}
+
+.nav > h3 {
+  cursor: pointer;
+}
+
+.active {
+  background: #fff;
+}
+
+.App {
+  width: 80%;
+  margin: 80px auto 0;
+}
+
+.blog__title {
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  cursor: pointer;
+}
+
+.about, .blog, .blog__article {
+  white-space: pre-line;
+}
+
+.blog__article {
+  padding: 0 30px;
+  margin: 10px 0;
+}
+
+.blog__post > .blog__title {
+  border: 0;
+}
