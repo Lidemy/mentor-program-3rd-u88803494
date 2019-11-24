@@ -1,0 +1,56 @@
+body {
+  font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", sans-serif;
+}
+
+.todolist__done {
+  margin-top: 0.5rem;
+}
+
+.todolist__content {
+  font-size: 19px;
+  padding-right: 150px;
+}
+
+.todolist__edit {
+  position: absolute;
+  right: 65px;
+  top: 0;
+  display: inline-block;
+}
+
+.todolist__delete {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: inline-block;
+}
+
+.editing__background {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 1001;
+  -moz-opacity: 0.8;
+  opacity: .80;
+  filter: alpha(opacity=88);
+}
+
+.editing__area {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 55%;
+  padding: 20px;
+  border: 10px solid aquamarine;
+  border-radius: 10px;
+  background-color: white;
+  z-index: 1002;
+  overflow: auto;
+}
+
+.editing__cancel {
+  margin-top: 20px;
+}

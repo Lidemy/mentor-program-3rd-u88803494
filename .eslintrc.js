@@ -20,8 +20,9 @@ module.exports = {
   plugins: [
     'react',
   ],
+  parser: "babel-eslint",
   rules: {
     "no-console": "off",
-	'linebreak-style': ["error", "windows"]
+    'linebreak-style': ["off", "windows"],
   },
 };

@@ -1,0 +1,82 @@
+.game {
+  margin: 10px auto;
+  padding: 20px;
+}
+
+.game__info {
+  text-align: center;
+}
+
+.game__state {
+  margin-top: 20px;
+}
+
+.game__area {
+  border: 1px solid #000;
+  margin: 0 auto;
+  width: 458px;
+  position: relative;
+  line-height: 0%;
+}
+
+/* 遊戲盤面 CSS */
+.game__board {
+  line-height: 0%;
+}
+
+.game__pieces {
+  display: inline-flex;
+  height: 24px;
+  width: 24px;
+  justify-content: center;
+  align-items: center;
+}
+
+.game__pieces--white, .game__pieces--black, .game__pieces--null {
+  width: 17px;
+  height: 17px;
+}
+
+.game__pieces--white {
+  border: 1px solid #000;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.game__pieces--black {
+  border: 1px solid #000;
+  border-radius: 50%;
+  background-color: #000;
+}
+
+.game__pieces--null {
+  border: 1px solid white;
+  border-radius: 50%;
+  background-color: white;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.game__pieces--null:hover {
+  border: 1px solid orange;
+  border-radius: 50%;
+  background-color: orange;
+  z-index: 200;
+}
+
+/* 棋盤 CSS */
+.game__lattice {
+  border: 1px solid #000;
+  width: 434px;
+  position: absolute;
+  top: 11px;
+  left: 11px;
+  z-index: -100;
+}
+
+.game__squares {
+  border: 1px solid #000;
+  height: 24px;
+  width: 24px;
+  display: inline-block;
+}
