@@ -1,0 +1,13 @@
+.form__datatype {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form__empty {
+  color: red;
+}
+
+.form__empty--submit {
+  display: flex;
+  justify-content: flex-end;
+}
