@@ -1,0 +1,36 @@
+.article {
+  max-width: 800px;
+  margin: 91px auto;
+  padding: 20px;
+}
+
+.article__header {
+  font-size: 13px;
+}
+
+.article__meta {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 50px;
+  margin-left: 10px;
+}
+
+.blog__contorller--back {
+  margin-right: 10px;
+}
+
+.article__body {
+  white-space: pre-line;
+  padding: 0 30px;
+  margin: 10px 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .article__meta {
+    display: block;
+  }
+
+  .article__controller {
+    margin-top: 10px;
+  }
+}
