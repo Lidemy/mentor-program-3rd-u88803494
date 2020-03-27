@@ -1,0 +1,52 @@
+.blog {
+  max-width: 752px;
+  margin: 100px auto;
+  padding: 20px;
+}
+
+.header {
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__title {
+  font-size: 35px;
+  font-weight: bolder;
+}
+
+.header__newpost {
+  margin-right: 50px;
+}
+
+.blog__post {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  white-space: nowrap;
+  transition: 0.2s;
+}
+
+.blog__post:hover {
+  transform: scale(1.025);
+  z-index: 1;
+  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.075);
+}
+
+.blog__title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 20%;
+  margin: 0 20px 0 30px;
+}
+
+.blog__title:hover {
+  color: #6c757d;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.btn ~ .btn {
+  margin-left: 10px;
+}
