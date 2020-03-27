@@ -1,0 +1,11 @@
+.footer {
+  padding-bottom: 30px;
+}
+
+.footer__body {
+  text-align: center;
+}
+
+.footer__icon {
+  color: rgb(226, 85, 85);
+}
